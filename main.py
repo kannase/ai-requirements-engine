@@ -14,25 +14,9 @@ gemini_llm = LLM(
 
 # 3. Setup the tool FIRST (so the agent can find it)
 # Ensure 'requirements.pdf' exists in your 'data' folder
-requirement_path = os.path.join('data', 'requirements.pdf')
-file_tool = PDFSearchTool(
-    pdf=requirement_path,
-    config=dict(
-        llm=dict(
-            provider="google", # Tells the tool to use Google
-            config=dict(
-                model="gemini/gemini-2.0-flash-lite",
-            ),
-        ),
-        embedder=dict(
-            provider="google", # Tells the tool to use Google for vectorizing
-            config=dict(
-                model="models/embedding-001", # Standard Google embedding model
-                task_type="retrieval_document",
-            ),
-        ),
-    )
-)
+requirement_path = os.path.join('data', 'requirements.txt') # Use .txt
+file_tool = FileReadTool(file_path=requirement_path)
+
 # 4. Define your BA Agent (Now assigning the tools and LLM correctly)
 ba_agent = Agent(
     role='Business Analyst',
