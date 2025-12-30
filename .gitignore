@@ -11,4 +11,7 @@ __pycache__/
 
 # Local Data (Requirements and outputs)
 data/
-output/
+# Ignore all files in the output folder
+output/*
+# But don't ignore the .gitkeep file (this keeps the folder in Git)
+!output/.gitkeep
